@@ -8,9 +8,9 @@ import com.rabbitmq.client.DeliverCallback;
 import javax.swing.*;
 
 public class ThreadReceiver extends Thread{
-    private String name;
-    private String queueName;
-    private JTextArea textArea;
+    private final String name;
+    private final String queueName;
+    private final JTextArea textArea;
 
     public ThreadReceiver(String name, String queueName, JTextArea textArea){
         this.name=name;

@@ -19,10 +19,8 @@ public class Send {
             String message = "Hello World!";
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
             System.out.println(" [X] Sent '" + message + "'");
-        } catch (TimeoutException timeoutException) {
-            timeoutException.printStackTrace();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,22 +1,18 @@
 package com.application.sender;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 public class MyJFrame extends JFrame{
-    private JPanel pan = new JPanel();
-    private JTextArea textArea = new JTextArea();
-    private JButton send = new JButton("Send");
+    private final JPanel pan = new JPanel();
+    private final JTextArea textArea = new JTextArea();
+    private final JButton send = new JButton("Send");
 
     public MyJFrame(String name, String queueName){
+        init(name, queueName);
+    }
+
+    public void init(String name, String queueName){
         //setting up the interface
         this.setTitle(name);
         this.setSize(800, 600);
@@ -34,6 +30,6 @@ public class MyJFrame extends JFrame{
         send.addActionListener(new SendListener(textArea, queueName));
         //adding the content to the interface
         pan.add(textArea, BorderLayout.CENTER);
-        //pan.add(send, BorderLayout.SOUTH);
+        pan.add(send, BorderLayout.SOUTH);
     }
 }

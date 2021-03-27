@@ -5,13 +5,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JFrameReceiver extends JFrame{
-    private JPanel pan = new JPanel();
-    private JSplitPane sp = new JSplitPane();
-    private JTextArea textArea1 = new JTextArea();
-    private JTextArea textArea2 = new JTextArea();
-    private ArrayList<ThreadReceiver> threadReceivers = new ArrayList<>();
+    private final JPanel pan = new JPanel();
+    private final JSplitPane sp = new JSplitPane();
+    private final JTextArea textArea1 = new JTextArea();
+    private final JTextArea textArea2 = new JTextArea();
+    private final ArrayList<ThreadReceiver> threadReceivers = new ArrayList<>();
 
-    public JFrameReceiver(String name) throws Exception {
+    public JFrameReceiver(String name){
+        init(name);
+    }
+
+    public void init(String name){
         this.setTitle(name);
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
@@ -23,16 +27,20 @@ public class JFrameReceiver extends JFrame{
         textArea2.setEditable(false);
 
         this.add(pan);
-        BorderLayout layout = new BorderLayout();
-        layout.setHgap(25);
+        GridLayout layout = new GridLayout();
         pan.setLayout(layout);
+        layout.setHgap(20);
         pan.add(textArea1);
         pan.add(textArea2);
         pan.add(sp);
+
         sp.setTopComponent(textArea1);
         sp.setBottomComponent(textArea2);
         sp.setOrientation(JSplitPane.VERTICAL_SPLIT);
         sp.setDividerLocation(300);
+
+
+
 
         threadReceivers.add(new ThreadReceiver("sender1","test1",textArea1));
         threadReceivers.add(new ThreadReceiver("sender2","test2",textArea2));
